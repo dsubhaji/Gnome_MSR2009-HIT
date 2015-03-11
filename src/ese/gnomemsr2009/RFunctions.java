@@ -1,10 +1,16 @@
 package ese.gnomemsr2009;
 
+
+
+
 import java.awt.FileDialog;
 import java.awt.Frame;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+
+
+
 
 
 import java.util.ArrayList;
@@ -209,7 +215,7 @@ public class RFunctions
 		re.eval("avg.PathLength = 0");
 		re.eval("avg.Degree = 0");
 		if(dcnOrDAN) re.eval("dcn = loadnetwork(\""+dirName+"/"+productName+"/"+productName+"-DCN.net\")");
-		else if(!dcnOrDAN) /*if(dcnOrDAN)*/ re.eval("dcn = loadnetwork(\""+dirName+"/"+productName+"/"+productName+"-DAN.net\")");
+		else if(!dcnOrDAN) if(dcnOrDAN) re.eval("dcn = loadnetwork(\""+dirName+"/"+productName+"/"+productName+"-DAN.net\")");
 		re.eval("dcnGraph         = graph.adjacency(dcn, mode=c(\"undirected\"))");
 		
 		re.eval("cent.Degree = centralization.degree(dcnGraph)$centralization");
@@ -896,14 +902,14 @@ public class RFunctions
 	@SuppressWarnings("static-access")
 	public void startRengine()
 	{
-		if (!Rengine.versionCheck()) {
+		/*if (!Rengine.versionCheck()) {
 	    System.err.println("** Version mismatch - Java files don't match library version.");
 	    System.exit(1);
-		}
+		}*/
 		String[] args = null;
 		tc = new TextConsole();
-		re= new Rengine();
-		//re = new Rengine(args, false, null);
+		
+		re = new Rengine(args, false, null);
 		//re.DEBUG = 100;
 		if (!re.waitForR()) 
 		{
